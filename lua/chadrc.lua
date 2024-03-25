@@ -30,6 +30,15 @@ M.ui = {
     -- round and block will work for the minimal theme only)
     separator_style = "default",
   },
+
+  term = {
+    float = {
+      row = 0.05,
+      col = 0.05,
+      width = 0.9,
+      height = 0.85,
+    },
+  },
 }
 
 return M

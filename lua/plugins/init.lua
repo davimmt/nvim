@@ -1,7 +1,6 @@
 return {
   { "nvim-tree/nvim-tree.lua", cmd = { "NvimTreeToggle", "NvimTreeFocus" }, opts = function() return require "configs.tree" end },
   { "folke/which-key.nvim", config = function() return require "custom.configs.which-key" end },
-  { "NvChad/nvterm", opts = function() return require "configs.nvterm" end },
   { "lukas-reineke/indent-blankline.nvim", config = function() return require "configs.indent-blankline" end },
   { "lewis6991/gitsigns.nvim", opts = function() return require "configs.gitsigns" end },
   { "tpope/vim-surround", event = "VeryLazy" },
