@@ -5,7 +5,7 @@
 local M = {}
 
 M.ui = {
-	theme = 'chadracula-evondev',
+  theme = 'chadracula-evondev',
   theme_toggle = {'catppuccin', 'chadracula-evondev'},
 
   telescope = { style = "bordered" },
