@@ -4,6 +4,7 @@ return {
   { "lukas-reineke/indent-blankline.nvim", config = function() return require "configs.indent-blankline" end },
   { "lewis6991/gitsigns.nvim", opts = function() return require "configs.gitsigns" end },
   { "tpope/vim-surround", event = "VeryLazy" },
+  { "towolf/vim-helm", event = "VeryLazy" },
   { "kdheepak/lazygit.nvim", event = "VeryLazy", dependencies = {"nvim-lua/plenary.nvim"} },
   { "stevearc/conform.nvim", event = "BufWritePre", config = function() require "configs.conform" end },
   { "neovim/nvim-lspconfig", config = function() require("nvchad.configs.lspconfig").defaults(); require "configs.lspconfig" end },
@@ -48,7 +49,7 @@ return {
       ensure_installed = {
         "lua-language-server", "stylua",
         "yaml-language-server", "prettier",
-        "terraform-ls", "tflint",
+        "terraform-ls", "tflint", "helm-ls",
         "gopls", "golines", "gofumpt", "goimports-reviser",
       },
     },

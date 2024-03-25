@@ -41,6 +41,16 @@ lspconfig.tflint.setup {
   root_dir = require("lspconfig.util").root_pattern("*.tf*", ".terraform", ".git", ".tflint.hcl")
 }
 
+lspconfig.helm_ls.setup {
+  settings = {
+    ['helm-ls'] = {
+      yamlls = {
+        path = "yaml-language-server",
+      }
+    }
+  }
+}
+
 local config = {
   vim.api.nvim_create_autocmd({"BufWritePre"}, {
     pattern = {"*.tf", "*.tfvars"},
