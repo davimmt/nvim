@@ -5,12 +5,31 @@
 local M = {}
 
 M.ui = {
-	theme = "onedark",
+	theme = 'chadracula-evondev',
+  theme_toggle = {'catppuccin', 'chadracula-evondev'},
 
-	-- hl_override = {
-	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
-	-- },
+  telescope = { style = "bordered" },
+
+  hl_add = {
+    DashboardHeader = { fg = "#40ffff" },
+    DashboardProjectTitle = { fg = "#40ffff" },
+    DashboardProjectIcon = { fg = "#ffa0a0" },
+    DashboardMruTitle = { fg = "#40ffff" },
+    DashboardShotCutIcon = { fg = "#40ffff" },
+    DashboardFooter = { fg = "#40ffff" },
+  },
+
+  hl_override = {
+    NvimTreeGitNew = { fg = "green" },
+    NvimTreeGitDirty = { fg = "orange" },
+  },
+
+  statusline = {
+    theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
+    -- default/round/block/arrow (separators work only for "default" statusline theme;
+    -- round and block will work for the minimal theme only)
+    separator_style = "default",
+  },
 }
 
 return M
