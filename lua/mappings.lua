@@ -39,7 +39,7 @@ map("n", "<leader>wk", "")
 map("n", "<leader>wK", "")
 
 -- normal movement
-map("n", "Q", ":q!<CR>", { desc = "Quit" })
+map("n", "Q", ":qa!<CR>", { desc = "Quit" })
 map("n", "<leader>N", "<cmd> enew <CR>", { desc = "New file buffer" })
 map("n", "<C-w>", function() require("nvchad.tabufline").close_buffer() end, { desc = "Close file buffer" })
 map("n", "<C-A-w>", "<cmd> lua require('which-key').show('\23', {mode = 'n', auto = true})<CR>", { desc = "Windows options" })
@@ -48,7 +48,9 @@ map("n", "<A-Up>", "yyP", { desc = "Yank line up" })
 map("n", "<A-Down>", "yyp", { desc = "Yank line down" })
 map("n", "<C-A-Up>", ":m -2<CR>", { desc = "Move line up" }) -- "ddkP" deletes line if on top
 map("n", "<C-A-Down>", "ddp", { desc = "Move line down" })
-map("n", "<C-A-s>", ":noa w <CR>", { desc = "Save file without " })
+map("n", "<C-A-s>", ":noa w <CR>", { desc = "Save file without formatting" })
+map("n", "<C-T>", "<C-O>", { desc = "Go to last pointer" })
+for i = 1, 9, 1 do map("n", string.format("<A-%s>", i), function() vim.api.nvim_set_current_buf(vim.t.bufs[i]) end, { desc = "Navegate between tabs"}) end
 -- nvchad
 map("n", "<leader>ct", "<cmd> Telescope themes <CR>", { desc = "NvChad Themes" })
 map("n", "<leader>cc", "<cmd> NvCheatsheet <CR>", { desc = "Mapping cheatsheet" })
@@ -62,3 +64,6 @@ map("n", "<leader>nh", "<cmd> Telescope help_tags <CR>", { desc = "Help page" })
 map("n", "<leader>ww", function() vim.cmd "WhichKey" end, { desc = "Which-key all keymaps" })
 -- lsp
 map("n", "<leader>lf", function() vim.lsp.buf.format { async = true } end, { desc = "LSP formatting" })
+-- tabufline
+map("n", "<A-Left>", function() require("nvchad.tabufline").move_buf(-1) end, { desc = "Move file buffer left" })
+map("n", "<A-Right>", function() require("nvchad.tabufline").move_buf(1) end, { desc = "Move file buffer right" })
