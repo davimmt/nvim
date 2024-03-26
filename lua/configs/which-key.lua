@@ -1,9 +1,17 @@
-local present, wk = pcall(require, "which-key")
-if not present then
-  return
+local status_ok, which_key = pcall(require, "which-key")
+if not status_ok then
+    return
 end
-wk.register(
-  {
+
+local setup = {
+    plugins = {
+        presets = {
+            windows = false, -- default bindings on <c-w>
+        },
+    },
+}
+
+local mappings = {
     ["<leader>"] = {
       c = { name = " NvChad" },
       f = { name = "󰈞 Files/Telescope" },
@@ -13,5 +21,7 @@ wk.register(
       t = { name = " Terminal" },
       w = { name = "󰦄 Which Key" },
     },
-  }
-)
+}
+
+which_key.setup(setup)
+which_key.register(mappings)
