@@ -41,7 +41,8 @@ map("n", "<leader>wK", "")
 -- normal movement
 map("n", "Q", ":qa!<CR>", { desc = "Quit" })
 map("n", "<leader>N", "<cmd> enew <CR>", { desc = "New file buffer" })
-map("n", "<C-w>", function() require("nvchad.tabufline").close_buffer() end, { desc = "Close file buffer" })
+-- TODO(1): Try to change it to <C-w>
+map("n", "<C-q>", function() require("nvchad.tabufline").close_buffer() end, { desc = "Close file buffer" })
 map("n", "<C-A-w>", "<cmd> lua require('which-key').show('\23', {mode = 'n', auto = true})<CR>", { desc = "Windows options" })
 map("n", "<leader>gg", ":LazyGit<CR>", { desc = "LazyGit" })
 map("n", "<A-Up>", "yyP", { desc = "Yank line up" })

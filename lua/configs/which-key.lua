@@ -6,7 +6,8 @@ end
 local setup = {
     plugins = {
         presets = {
-            windows = false, -- default bindings on <c-w>
+            -- TODO(1): change this default binding, so that <C-w> can be used to close buffers
+            windows = true, -- default bindings on <c-w>
         },
     },
 }
