@@ -64,6 +64,7 @@ local opts = {
     map('n', '<leader>gs', gs.stage_hunk, { desc = 'Stage' })
     map('n', '<leader>gr', gs.reset_hunk, { desc = 'Reset' })
     map('v', '<leader>gs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end, { desc = 'Stage' })
+    map('v', '<leader>gu', function() gs.undo_stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end, { desc = 'Unstage' })
     map('v', '<leader>gr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end, { desc = 'Reset' })
     map('n', '<leader>gu', gs.undo_stage_hunk, { desc = 'Unstage' })
     map('n', '<leader>gb', function() gs.blame_line{full=true} end, { desc = 'Blame' })
