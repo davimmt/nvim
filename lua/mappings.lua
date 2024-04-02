@@ -28,6 +28,7 @@ map("n", "<leader>pt", "")
 -- nvterm
 map("n", "<leader>h", "")
 map("n", "<leader>v", "")
+map("t", "<ESC>", "")
 -- line numbers
 map("n", "<leader>rn", "")
 -- telescope
@@ -41,6 +42,8 @@ map("n", "<leader>wK", "")
 -- normal movement
 map("n", "Q", ":qa!<CR>", { desc = "Quit" })
 map("n", "<leader>N", "<cmd> enew <CR>", { desc = "New file buffer" })
+-- terminal
+map("t", "<ESC>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
 -- TODO(1): Try to change it to <C-w>
 map("n", "<C-q>", function() require("nvchad.tabufline").close_buffer() end, { desc = "Close file buffer" })
 map("n", "<C-A-w>", "<cmd> lua require('which-key').show('\23', {mode = 'n', auto = true})<CR>", { desc = "Windows options" })
