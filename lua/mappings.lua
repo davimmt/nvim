@@ -1,43 +1,41 @@
 require "nvchad.mappings"
 
--- add yours here
+-- disable mappings
+local nomap = vim.keymap.del
 
+-- toggle nvimtree
+nomap("n", "<leader>e")
+-- new/close buffer
+nomap("n", "<leader>b")
+nomap("n", "<leader>x")
+-- comment
+nomap("n", "<leader>/")
+-- nvchad themes
+nomap("n", "<leader>th")
+-- nvchad cheatsheet
+nomap("n", "<leader>ch")
+-- pick a hidden term
+nomap("n", "<leader>pt")
+-- nvterm
+nomap("n", "<leader>h")
+nomap("n", "<leader>v")
+nomap("t", "<ESC>")
+-- line numbers
+nomap("n", "<leader>rn")
+-- telescope
+nomap("n", "<leader>cm")
+nomap("n", "<leader>gt")
+nomap("n", "<leader>fm")
+-- which-key
+nomap("n", "<leader>wk")
+nomap("n", "<leader>wK")
+
+-- add mappings
 local map = vim.keymap.set
 
+-- term
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
-
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
-
--- disable
--- toggle nvimtree
-map("n", "<leader>e", "")
--- new/close buffer
-map("n", "<leader>b", "")
-map("n", "<leader>x", "")
--- comment
-map("n", "<leader>/", "")
--- nvchad themes
-map("n", "<leader>th", "")
--- nvchad cheatsheet
-map("n", "<leader>ch", "")
--- telescope bookmarks
-map("n", "<leader>ma", "")
--- pick a hidden term
-map("n", "<leader>pt", "")
--- nvterm
-map("n", "<leader>h", "")
-map("n", "<leader>v", "")
-map("t", "<ESC>", "")
--- line numbers
-map("n", "<leader>rn", "")
--- telescope
-map("n", "<leader>cm", "")
-map("n", "<leader>gt", "")
-map("n", "<leader>fm", "")
--- which-key
-map("n", "<leader>wk", "")
-map("n", "<leader>wK", "")
 
 -- normal movement
 map("n", "Q", ":qa!<CR>", { desc = "Quit" })
