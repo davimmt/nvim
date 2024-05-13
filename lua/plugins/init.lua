@@ -73,4 +73,36 @@ return {
       require("configs.which-key")
     end,
   },
+  {
+    "zbirenbaum/copilot.lua",
+    lazy = false,
+    event = "InsertEnter",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    config = function()
+      local copilot = require("copilot")
+      copilot.setup(copilot.opts)
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+    },
+    opts = {
+      sources = {
+        { name = "nvim_lsp", group_index = 2 },
+        { name = "copilot", group_index = 2 },
+        { name = "luasnip", group_index = 2 },
+        { name = "buffer", group_index = 2 },
+        { name = "nvim_lua", group_index = 2 },
+        { name = "path", group_index = 2 },
+      },
+    },
+  },
 }
