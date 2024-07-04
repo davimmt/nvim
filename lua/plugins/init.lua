@@ -9,8 +9,10 @@ return {
   { "stevearc/conform.nvim", event = "BufWritePre", config = function() require "configs.conform" end },
   { "neovim/nvim-lspconfig", config = function() require("nvchad.configs.lspconfig").defaults(); require "configs.lspconfig" end },
   { "jose-elias-alvarez/null-ls.nvim", event = "VeryLazy", opts = function() return require "configs.null-ls" end },
-  {
-    "glepnir/dashboard-nvim", event = "VimEnter", cmd = "Dashboard", dependencies = { "nvim-tree/nvim-web-devicons" },
+  { "glepnir/dashboard-nvim", event = "VimEnter", cmd = "Dashboard", dependencies = { "nvim-tree/nvim-web-devicons" },
+  { 
+    "stevearc/conform.nvim",
+    -- event = 'BufWritePre', -- uncomment for format on save
     config = function()
       return require "configs.dashboard"
     end,
