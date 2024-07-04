@@ -6,22 +6,28 @@ return {
   { "tpope/vim-surround", event = "VeryLazy" },
   { "towolf/vim-helm", ft = { "yaml", "helm", "gotmpl" }},
   { "kdheepak/lazygit.nvim", event = "VeryLazy", dependencies = {"nvim-lua/plenary.nvim"} },
-  { "stevearc/conform.nvim", event = "BufWritePre", config = function() require "configs.conform" end },
   { "neovim/nvim-lspconfig", config = function() require("nvchad.configs.lspconfig").defaults(); require "configs.lspconfig" end },
   { "jose-elias-alvarez/null-ls.nvim", event = "VeryLazy", opts = function() return require "configs.null-ls" end },
-  { "glepnir/dashboard-nvim", event = "VimEnter", cmd = "Dashboard", dependencies = { "nvim-tree/nvim-web-devicons" },
-  { 
-    "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+  {
+    "nvimdev/dashboard-nvim", event = "VimEnter", cmd = "Dashboard",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       return require "configs.dashboard"
     end,
   },
   {
-    "Shatur/neovim-session-manager", lazy = false, commit = "b552ee8667037be5d0291229279a35af25e515fb",
+    "stevearc/conform.nvim",
+    -- event = 'BufWritePre', -- uncomment for format on save
     config = function()
+      return require "configs.conform"
+    end,
+  },
+  {
+    "Shatur/neovim-session-manager", lazy = false,
+    config = function()
+      local config = require('session_manager.config')
       require('session_manager').setup({
-        autoload_mode = 'Disabled' -- What to do when started without arguments [Disabled, CurrentDir, LastSession].
+        autoload_mode = config.AutoloadMode.Disabled, -- What to do when started without arguments [Disabled, CurrentDir, LastSession].
       })
     end,
   },
