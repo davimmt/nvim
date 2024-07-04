@@ -32,14 +32,18 @@ M.ui = {
     -- round and block will work for the minimal theme only)
     separator_style = "default",
   },
+}
 
-  term = {
-    float = {
-      row = 0.05,
-      col = 0.05,
-      width = 0.9,
-      height = 0.85,
-    },
+M.term = {
+  winopts = { winhl = "Normal:term,WinSeparator:WinSeparator" },
+  sizes = { sp = 0.3, vsp = 0.2, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
+  float = {
+    relative = "editor",
+    row = 0.021,
+    col = 0.05,
+    width = 0.9,
+    height = 0.85,
+    border = "single",
   },
 }
 
