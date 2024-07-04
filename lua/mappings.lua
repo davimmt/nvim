@@ -19,7 +19,6 @@ nomap("n", "<leader>pt")
 -- nvterm
 nomap("n", "<leader>h")
 nomap("n", "<leader>v")
-nomap("t", "<ESC>")
 -- line numbers
 nomap("n", "<leader>rn")
 -- telescope
