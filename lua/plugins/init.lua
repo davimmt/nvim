@@ -16,7 +16,7 @@ return {
     end,
   },
   {
-    "Shatur/neovim-session-manager", lazy = false,
+    "Shatur/neovim-session-manager", lazy = false, commit = "b552ee8667037be5d0291229279a35af25e515fb",
     config = function()
       require('session_manager').setup({
         autoload_mode = 'Disabled' -- What to do when started without arguments [Disabled, CurrentDir, LastSession].
