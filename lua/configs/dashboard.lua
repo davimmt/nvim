@@ -27,12 +27,12 @@ local config = {
       shortcut = {
         -- https://fontawesome.com/search?o=r&m=free
         -- :so $VIMRUNTIME/syntax/hitest.vim
-        { desc = ' Lazy', group = '@property', action = 'Lazy', key = 'L' },
-        { desc = ' Session', group = 'Label', action = 'SessionManager load_last_session', key = 's' },
-        { desc = ' File', group = 'Label', action = 'Telescope find_files',  key = 'f', },
-        { desc = ' Word', group = 'Label', action = 'Telescope live_grep',  key = 'w', },
-        { desc = ' Git', group = 'Label', action = 'Telescope git_status',  key = 'g', },
-        { desc = ' Quit', group = 'Number', action = 'q!',  key = 'q', },
+        { desc = ' Lazy', group = 'DashboardProjectTitle', action = 'Lazy', key = 'L' },
+        { desc = ' Session', group = 'DashboardOption', action = 'SessionManager load_last_session', key = 's' },
+        { desc = ' File', group = 'DashboardOption', action = 'Telescope find_files',  key = 'f', },
+        { desc = ' Word', group = 'DashboardOption', action = 'Telescope live_grep',  key = 'w', },
+        { desc = ' Git', group = 'DashboardOption', action = 'Telescope git_status',  key = 'g', },
+        { desc = ' Quit', group = 'DashboardError', action = 'q!',  key = 'q', },
       },
       project = { enable = true, limit = 3, },
       mru = { limit = 5, },

@@ -12,6 +12,8 @@ M.ui = {
 
   hl_add = {
     DashboardHeader = { fg = "#40ffff" },
+    DashboardOption = { fg = "#ffd24d" },
+    DashboardError = { fg = "#ff8282" },
     DashboardProjectTitle = { fg = "#40ffff" },
     DashboardProjectIcon = { fg = "#ffa0a0" },
     DashboardMruTitle = { fg = "#40ffff" },
