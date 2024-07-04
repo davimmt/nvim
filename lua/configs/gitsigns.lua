@@ -1,14 +1,15 @@
 local opts = {
-  signs = {
-    change = { numhl = 'DiffModified', hl = 'DiffModified' },
-    untracked = { linehl = '', numhl = '', hl = 'DevIconSh' },
-  --   add          = { text = '│' },
-  --   change       = { text = '│' },
-  --   delete       = { text = '_' },
-  --   topdelete    = { text = '‾' },
-  --   changedelete = { text = '~' },
-  --   untracked    = { text = '┆' },
-  },
+  -- deprecated
+  -- signs = {
+  --   change = { numhl = 'DiffModified', hl = 'DiffModified' },
+  --   untracked = { linehl = '', numhl = '', hl = 'DevIconSh' },
+  -- --   add          = { text = '│' },
+  -- --   change       = { text = '│' },
+  -- --   delete       = { text = '_' },
+  -- --   topdelete    = { text = '‾' },
+  -- --   changedelete = { text = '~' },
+  -- --   untracked    = { text = '┆' },
+  -- },
   signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
   numhl      = true, -- Toggle with `:Gitsigns toggle_numhl`
   linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
@@ -37,6 +38,13 @@ local opts = {
     col = 1
   },
   on_attach = function(bufnr)
+    -- Signs
+    vim.api.nvim_set_hl(0, 'GitSignsChange', { link = 'DiffModified' })
+    vim.api.nvim_set_hl(0, 'GitSignsChangeNr', { link = 'DiffModified' })
+    vim.api.nvim_set_hl(0, 'GitSignsUntracked', { link = 'DevIconSh' })
+    vim.api.nvim_set_hl(0, 'GitSignsUntrackedLn', { link = '' })
+    vim.api.nvim_set_hl(0, 'GitSignsUntrackedNr', { link = '' })
+
     local gs = package.loaded.gitsigns
 
     local function map(mode, l, r, opts)
