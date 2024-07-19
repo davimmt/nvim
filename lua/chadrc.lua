@@ -36,7 +36,7 @@ M.ui = {
 
 M.term = {
   winopts = { winhl = "Normal:term,WinSeparator:WinSeparator" },
-  sizes = { sp = 0.3, vsp = 0.2, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
+  sizes = { sp = 0.27, vsp = 0.32, ["bo sp"] = 0.2, ["bo vsp"] = 0.2 },
   float = {
     relative = "editor",
     row = 0.021,

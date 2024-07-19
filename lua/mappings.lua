@@ -68,3 +68,10 @@ map("n", "<leader>lf", function() vim.lsp.buf.format { async = true } end, { des
 -- tabufline
 map("n", "<A-Left>", function() require("nvchad.tabufline").move_buf(-1) end, { desc = "Move file buffer left" })
 map("n", "<A-Right>", function() require("nvchad.tabufline").move_buf(1) end, { desc = "Move file buffer right" })
+-- spectre
+-- map("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
+-- map("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Search current word" })
+-- map("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search current word" })
+map("n", "<C-x>", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
+map("n", "<A-x>", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Search current word" })
+map("v", "<A-x>", '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search current word" })
