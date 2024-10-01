@@ -5,6 +5,7 @@
 local M = {}
 
 M.ui = {
+  transparency = true,
   theme = 'chadracula-evondev',
   theme_toggle = {'catppuccin', 'chadracula-evondev'},
 

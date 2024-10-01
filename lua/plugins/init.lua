@@ -5,7 +5,7 @@ return {
   { "lukas-reineke/indent-blankline.nvim", config = function() return require "configs.indent-blankline" end },
   { "lewis6991/gitsigns.nvim", opts = function() return require "configs.gitsigns" end },
   { "tpope/vim-surround", event = "VeryLazy" },
-  { "towolf/vim-helm", ft = { "yaml", "helm", "gotmpl" }},
+  { "towolf/vim-helm", ft = { "helm", "gotmpl" }}, -- TODO: fix helm/yaml file diff
   { "kdheepak/lazygit.nvim", event = "VeryLazy", dependencies = {"nvim-lua/plenary.nvim"} },
   { "neovim/nvim-lspconfig", config = function() require("nvchad.configs.lspconfig").defaults(); require "configs.lspconfig" end },
   { "jose-elias-alvarez/null-ls.nvim", event = "VeryLazy", opts = function() return require "configs.null-ls" end },
