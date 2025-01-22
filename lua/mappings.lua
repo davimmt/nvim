@@ -79,5 +79,5 @@ map("n", "<A-Right>", function() require("nvchad.tabufline").move_buf(1) end, { 
 -- map("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Search current word" })
 -- map("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search current word" })
 map("n", "<C-x>", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
-map("n", "<A-x>", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Search current word" })
-map("v", "<A-x>", '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search current word" })
+map("n", "<C-A-x>", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Search current word" })
+map("v", "<C-A-x>", '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search current word" })
