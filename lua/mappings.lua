@@ -25,9 +25,12 @@ nomap("n", "<leader>rn")
 nomap("n", "<leader>cm")
 nomap("n", "<leader>gt")
 nomap("n", "<leader>fm")
+nomap("n", "<leader>ma")
 -- which-key
 nomap("n", "<leader>wk")
 nomap("n", "<leader>wK")
+-- lsp
+nomap("n", "<leader>ds")
 
 -- add mappings
 local map = vim.keymap.set
@@ -41,6 +44,8 @@ map("n", "Q", ":qa!<CR>", { desc = "Quit" })
 map("n", "<leader>N", "<cmd> enew <CR>", { desc = "New file buffer" })
 -- terminal
 map("t", "<ESC>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
+map("n", "<leader>th", function() require("nvchad.term").new { pos = "sp" } end, { desc = "Terminal new horizontal term" })
+map("n", "<leader>tv", function() require("nvchad.term").new { pos = "vsp" } end, { desc = "Terminal new vertical term" })
 -- TODO(1): Try to change it to <C-w>
 map("n", "<C-q>", function() require("nvchad.tabufline").close_buffer() end, { desc = "Close file buffer" })
 map("n", "<C-A-w>", "<cmd> lua require('which-key').show('\23', {mode = 'n', auto = true})<CR>", { desc = "Windows options" })
@@ -60,6 +65,7 @@ map("n", "<leader>cc", "<cmd> NvCheatsheet <CR>", { desc = "Mapping cheatsheet" 
 -- telescope
 map("n", "<leader>fm", "<cmd> Telescope marks <CR>", { desc = "Telescope Bookmarks" })
 map("n", "<leader>fm", "<cmd> Telescope marks <CR>", { desc = "Telescope Bookmarks" })
+map("n", "<leader>fa", "<cmd>Telescope marks<CR>", { desc = "Telescope find marks" })
 map("n", "<A-f>", "<cmd> Telescope find_files <CR>")
 map("n", "<A-w>", "<cmd> Telescope live_grep <CR>")
 map("n", "<A-g>", "<cmd> Telescope git_status <CR>")
