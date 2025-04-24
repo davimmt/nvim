@@ -55,7 +55,7 @@ map("n", "<C-A-s>", ":noa w <CR>", { desc = "Save file without formatting" })
 map("n", "<C-T>", "<C-O>", { desc = "Go to last pointer" })
 for i = 1, 9, 1 do map("n", string.format("<A-%s>", i), function() vim.api.nvim_set_current_buf(vim.t.bufs[i]) end, { desc = "Navegate between tabs"}) end
 -- nvchad
-map("n", "<leader>ct", "<cmd> Telescope themes <CR>", { desc = "NvChad Themes" })
+map("n", "<leader>ct", function() require("nvchad.themes").open() end, { desc = "NvChad Themes" })
 map("n", "<leader>cc", "<cmd> NvCheatsheet <CR>", { desc = "Mapping cheatsheet" })
 -- telescope
 map("n", "<leader>fm", "<cmd> Telescope marks <CR>", { desc = "Telescope Bookmarks" })

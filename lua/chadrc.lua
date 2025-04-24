@@ -6,7 +6,9 @@
 local M = {}
 
 M.base46 = {
-	theme = "onedark",
+  transparency = true,
+  theme = "onedark",
+  theme_toggle = { "onedark", "one_light" },
 
   telescope = { style = "bordered" },
 
@@ -26,6 +28,15 @@ M.base46 = {
     NvimTreeGitDirty = { fg = "orange" },
   },
 
+  statusline = {
+    theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
+    -- default/round/block/arrow (separators work only for "default" statusline theme;
+    -- round and block will work for the minimal theme only)
+    separator_style = "default",
+  },
+}
+
+M.ui = {
   statusline = {
     theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
     -- default/round/block/arrow (separators work only for "default" statusline theme;
