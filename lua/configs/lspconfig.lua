@@ -61,4 +61,3 @@ local config = {
 }
 
 return config
-

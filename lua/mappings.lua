@@ -25,9 +25,12 @@ nomap("n", "<leader>rn")
 nomap("n", "<leader>cm")
 nomap("n", "<leader>gt")
 nomap("n", "<leader>fm")
+nomap("n", "<leader>ma")
 -- which-key
 nomap("n", "<leader>wk")
 nomap("n", "<leader>wK")
+-- lsp
+nomap("n", "<leader>ds")
 
 -- add mappings
 local map = vim.keymap.set
@@ -41,6 +44,8 @@ map("n", "Q", ":qa!<CR>", { desc = "Quit" })
 map("n", "<leader>N", "<cmd> enew <CR>", { desc = "New file buffer" })
 -- terminal
 map("t", "<ESC>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
+map("n", "<leader>th", function() require("nvchad.term").new { pos = "sp" } end, { desc = "Terminal new horizontal term" })
+map("n", "<leader>tv", function() require("nvchad.term").new { pos = "vsp" } end, { desc = "Terminal new vertical term" })
 -- TODO(1): Try to change it to <C-w>
 map("n", "<C-q>", function() require("nvchad.tabufline").close_buffer() end, { desc = "Close file buffer" })
 map("n", "<C-A-w>", "<cmd> lua require('which-key').show('\23', {mode = 'n', auto = true})<CR>", { desc = "Windows options" })
@@ -55,11 +60,13 @@ map("n", "<C-A-s>", ":noa w <CR>", { desc = "Save file without formatting" })
 map("n", "<C-T>", "<C-O>", { desc = "Go to last pointer" })
 for i = 1, 9, 1 do map("n", string.format("<A-%s>", i), function() vim.api.nvim_set_current_buf(vim.t.bufs[i]) end, { desc = "Navegate between tabs"}) end
 -- nvchad
-map("n", "<leader>ct", "<cmd> Telescope themes <CR>", { desc = "NvChad Themes" })
+map("n", "<leader>ct", function() require("nvchad.themes").open() end, { desc = "NvChad Themes" })
+map("n", "<leader>cv", ":lua require('base46').toggle_transparency()<CR>", { desc = "Toggle Background Transparency" })
 map("n", "<leader>cc", "<cmd> NvCheatsheet <CR>", { desc = "Mapping cheatsheet" })
 -- telescope
 map("n", "<leader>fm", "<cmd> Telescope marks <CR>", { desc = "Telescope Bookmarks" })
 map("n", "<leader>fm", "<cmd> Telescope marks <CR>", { desc = "Telescope Bookmarks" })
+map("n", "<leader>fa", "<cmd>Telescope marks<CR>", { desc = "Telescope find marks" })
 map("n", "<A-f>", "<cmd> Telescope find_files <CR>")
 map("n", "<A-w>", "<cmd> Telescope live_grep <CR>")
 map("n", "<A-g>", "<cmd> Telescope git_status <CR>")

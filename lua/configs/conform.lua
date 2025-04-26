@@ -3,13 +3,22 @@ local options = {
     lua = { "stylua" },
     -- css = { "prettier" },
     -- html = { "prettier" },
+    terraform = { "terraform_fmt" },
+    hcl = { "hcl" },
+    terragrunt = { "terragrunt_hclfmt" },
   },
 
-  -- format_on_save = {
-  --   -- These options will be passed to conform.format()
-  --   timeout_ms = 500,
-  --   lsp_fallback = true,
-  -- },
+  -- Use the "*" filetype to run formatters on all filetypes.
+  ["*"] = { "codespell" },
+  -- Use the "_" filetype to run formatters on filetypes that don't
+  -- have other formatters configured.
+  ["*"] = { "trim_whitespace", "trim_newlines" },
+
+  format_on_save = {
+    -- These options will be passed to conform.format()
+    timeout_ms = 500,
+    lsp_fallback = true,
+  },
 }
 
-require("conform").setup(options)
+return options
