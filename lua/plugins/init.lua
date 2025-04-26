@@ -1,12 +1,29 @@
 return {
   {
+    "nvim-tree/nvim-web-devicons",
+    event = "VeryLazy",
+    opts = {
+      -- strict = true, -- Enforce strict matching for extensions
+      override_by_extension = {
+        ["astro"] = {
+          icon = "🚀",
+          color = "#EF8547",
+          name = "Astro",
+        },
+      },
+    },
+  },
+  {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = function()
       return require "configs.tree"
     end,
   },
+  -- Search & Replace
   { "nvim-pack/nvim-spectre", cmd = "Spectre" },
+  -- Identation UI
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
@@ -19,6 +36,7 @@ return {
       return require "configs.gitsigns"
     end,
   },
+  -- Mappings to easily delete, change and add surroundings in pairs
   { "tpope/vim-surround", event = "VeryLazy" },
   { "towolf/vim-helm", ft = { "helm", "gotmpl" } }, -- TODO: fix helm/yaml file diff
   { "kdheepak/lazygit.nvim", event = "VeryLazy", dependencies = { "nvim-lua/plenary.nvim" } },
@@ -38,11 +56,13 @@ return {
       return require "configs.dashboard"
     end,
   },
+  -- Formatter
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
     opts = require "configs.conform",
   },
+  -- Open last openned file and position
   {
     "Shatur/neovim-session-manager",
     lazy = false,
@@ -53,13 +73,7 @@ return {
       }
     end,
   },
-  -- These are some examples, uncomment them if you want to see them work!
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      return require "configs.conform"
-    end,
-  },
+  -- Rapidly navigate in files
   {
     "folke/flash.nvim",
     keys = {
@@ -105,6 +119,7 @@ return {
       },
     },
   },
+  -- Select and work with multiple cursors
   {
     "mg979/vim-visual-multi",
     branch = "master",
@@ -117,6 +132,7 @@ return {
       }
     end,
   },
+  -- Install and manage LSP servers, formatters
   {
     "williamboman/mason.nvim",
     opts = {
@@ -135,6 +151,7 @@ return {
       },
     },
   },
+  -- Highlighting and syntax
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -150,6 +167,7 @@ return {
       },
     },
   },
+  -- Mapping UI
   {
     "folke/which-key.nvim",
     keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
@@ -171,6 +189,7 @@ return {
       copilot.setup(copilot.opts)
     end,
   },
+  -- Completion engine
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
