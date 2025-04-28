@@ -88,3 +88,29 @@ map("n", "<A-Right>", function() require("nvchad.tabufline").move_buf(1) end, { 
 map("n", "<C-x>", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
 map("n", "<C-A-x>", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Search current word" })
 map("v", "<C-A-x>", '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search current word" })
+
+-- Diff between files
+map("n", "<A-d>", function()
+  require("telescope.builtin").find_files {
+    attach_mappings = function(prompt_bufnr, map)
+      local actions = require "telescope.actions"
+      local action_state = require "telescope.actions.state"
+
+      -- Overwrite <CR> behavior
+      actions.select_default:replace(function()
+        local file = action_state.get_selected_entry().path
+        actions.close(prompt_bufnr)
+        vim.cmd("vert diffsplit " .. vim.fn.fnameescape(file))
+      end)
+
+      return true
+    end,
+  }
+end, { desc = "Vertical diffsplit with file (Telescope)" })
+
+-- Customize diff colors
+-- Loading here because of overwrites
+local set_hl = vim.api.nvim_set_hl
+set_hl(0, "DiffChange", { bg = "" })
+set_hl(0, "DiffText", { bg = "#222000" })
+set_hl(0, "DiffDelete", { bg = "#51202A", fg = "#51202A" })
