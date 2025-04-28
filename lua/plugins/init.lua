@@ -141,7 +141,6 @@ return {
         "stylua",
         "yaml-language-server",
         "prettier",
-        "terraform-ls",
         "tflint",
         "helm-ls",
         "gopls",
