@@ -3,7 +3,7 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "yamlls" }
+local servers = { "yamlls", "bashls" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -16,6 +16,7 @@ end
 
 local util = require "lspconfig/util"
 
+-- Go
 lspconfig.gopls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -33,9 +34,11 @@ lspconfig.gopls.setup {
   },
 }
 
+-- Terrraform
 lspconfig.terraform_lsp.setup {
   root_dir = require("lspconfig.util").root_pattern("*.tf*", ".terraform", ".git", ".tflint.hcl"),
 }
+
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*.tf", "*.tfvars" },
   callback = function()
@@ -47,6 +50,7 @@ lspconfig.tflint.setup {
   root_dir = require("lspconfig.util").root_pattern("*.tf*", ".terraform", ".git", ".tflint.hcl"),
 }
 
+-- Helm
 lspconfig.helm_ls.setup {
   settings = {
     ["helm-ls"] = {

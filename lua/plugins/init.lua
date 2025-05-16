@@ -5,6 +5,10 @@ return {
     opts = {
       -- strict = true, -- Enforce strict matching for extensions
       override_by_extension = {
+        ["toml"] = {
+          icon = "⚙️",
+          name = "toml",
+        },
         ["astro"] = {
           icon = "🚀",
           color = "#EF8547",
@@ -142,7 +146,10 @@ return {
         "yaml-language-server",
         "prettier",
         "tflint",
+        "bash-language-server",
+        "shellcheck",
         "helm-ls",
+        "hclfmt",
         "gopls",
         "golines",
         "gofumpt",
@@ -159,6 +166,7 @@ return {
         "lua",
         "vimdoc",
         "dockerfile",
+        "go",
         "bash",
         "terraform",
         "yaml",

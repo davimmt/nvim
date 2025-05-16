@@ -1,6 +1,8 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
+    go = { "goimports", "gofmt" },
+    sh = { "shellcheck" },
     -- css = { "prettier" },
     -- html = { "prettier" },
     terraform = { "terraform_fmt" },
@@ -9,7 +11,7 @@ local options = {
   },
 
   -- Use the "*" filetype to run formatters on all filetypes.
-  ["*"] = { "codespell" },
+  -- ["*"] = { "codespell" },
   -- Use the "_" filetype to run formatters on filetypes that don't
   -- have other formatters configured.
   ["*"] = { "trim_whitespace", "trim_newlines" },

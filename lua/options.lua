@@ -19,6 +19,12 @@ autocmd("FileType", {
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+--
+vim.opt.list = true
+vim.opt.listchars:append "space:⋅"
+-- vim.opt.listchars:append "eol:↴"
+vim.cmd.highlight "IblScope guifg=#b3b3b3"
+
 -- dynamic terminal padding
 -- autocmd("VimEnter", {
 --   command = ":silent !kitty @ set-spacing padding=0 margin=0",

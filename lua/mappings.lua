@@ -42,13 +42,25 @@ map("i", "jk", "<ESC>")
 -- normal movement
 map("n", "Q", ":qa!<CR>", { desc = "Quit" })
 map("n", "<leader>N", "<cmd> enew <CR>", { desc = "New file buffer" })
+map("i", "<C-s>", "<Esc>:noa w<CR>a", { desc = "Save file in insert mode" })
 -- terminal
 map("t", "<ESC>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
-map("n", "<leader>th", function() require("nvchad.term").new { pos = "sp" } end, { desc = "Terminal new horizontal term" })
-map("n", "<leader>tv", function() require("nvchad.term").new { pos = "vsp" } end, { desc = "Terminal new vertical term" })
+map("n", "<leader>th", function()
+  require("nvchad.term").new { pos = "sp" }
+end, { desc = "Terminal new horizontal term" })
+map("n", "<leader>tv", function()
+  require("nvchad.term").new { pos = "vsp" }
+end, { desc = "Terminal new vertical term" })
 -- TODO(1): Try to change it to <C-w>
-map("n", "<C-q>", function() require("nvchad.tabufline").close_buffer() end, { desc = "Close file buffer" })
-map("n", "<C-A-w>", "<cmd> lua require('which-key').show('\23', {mode = 'n', auto = true})<CR>", { desc = "Windows options" })
+map("n", "<C-q>", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "Close file buffer" })
+map(
+  "n",
+  "<C-A-w>",
+  "<cmd> lua require('which-key').show('\23', {mode = 'n', auto = true})<CR>",
+  { desc = "Windows options" }
+)
 map("n", "<leader>gg", ":LazyGit<CR>", { desc = "LazyGit" })
 map("n", "<A-Up>", "yyP", { desc = "Yank line up" })
 map("n", "<A-Down>", "yyp", { desc = "Yank line down" })
@@ -58,9 +70,15 @@ map("v", "<C-A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move visual block up" })
 map("v", "<C-A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move visual block down" })
 map("n", "<C-A-s>", ":noa w <CR>", { desc = "Save file without formatting" })
 map("n", "<C-T>", "<C-O>", { desc = "Go to last pointer" })
-for i = 1, 9, 1 do map("n", string.format("<A-%s>", i), function() vim.api.nvim_set_current_buf(vim.t.bufs[i]) end, { desc = "Navegate between tabs"}) end
+for i = 1, 9, 1 do
+  map("n", string.format("<A-%s>", i), function()
+    vim.api.nvim_set_current_buf(vim.t.bufs[i])
+  end, { desc = "Navegate between tabs" })
+end
 -- nvchad
-map("n", "<leader>ct", function() require("nvchad.themes").open() end, { desc = "NvChad Themes" })
+map("n", "<leader>ct", function()
+  require("nvchad.themes").open()
+end, { desc = "NvChad Themes" })
 map("n", "<leader>cv", ":lua require('base46').toggle_transparency()<CR>", { desc = "Toggle Background Transparency" })
 map("n", "<leader>cc", "<cmd> NvCheatsheet <CR>", { desc = "Mapping cheatsheet" })
 -- telescope
@@ -75,12 +93,20 @@ map("n", "<leader>nn", "<cmd> set nu! rnu! <CR>", { desc = "Toggle line numbers"
 map("n", "<leader>na", "<cmd> set nu rnu! <CR>", { desc = "Toggle absolute line numbers" })
 map("n", "<leader>nh", "<cmd> Telescope help_tags <CR>", { desc = "Help page" })
 -- which-key
-map("n", "<leader>ww", function() vim.cmd "WhichKey" end, { desc = "Which-key all keymaps" })
+map("n", "<leader>ww", function()
+  vim.cmd "WhichKey"
+end, { desc = "Which-key all keymaps" })
 -- lsp
-map("n", "<leader>lf", function() vim.lsp.buf.format { async = true } end, { desc = "LSP formatting" })
+map("n", "<leader>lf", function()
+  vim.lsp.buf.format { async = true }
+end, { desc = "LSP formatting" })
 -- tabufline
-map("n", "<A-Left>", function() require("nvchad.tabufline").move_buf(-1) end, { desc = "Move file buffer left" })
-map("n", "<A-Right>", function() require("nvchad.tabufline").move_buf(1) end, { desc = "Move file buffer right" })
+map("n", "<A-Left>", function()
+  require("nvchad.tabufline").move_buf(-1)
+end, { desc = "Move file buffer left" })
+map("n", "<A-Right>", function()
+  require("nvchad.tabufline").move_buf(1)
+end, { desc = "Move file buffer right" })
 -- spectre
 -- map("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
 -- map("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Search current word" })
@@ -114,3 +140,4 @@ local set_hl = vim.api.nvim_set_hl
 set_hl(0, "DiffChange", { bg = "" })
 set_hl(0, "DiffText", { bg = "#222000" })
 set_hl(0, "DiffDelete", { bg = "#51202A", fg = "#51202A" })
+set_hl(0, "SpectreReplace", { bg = "#312931", fg = "#e06c75" })
