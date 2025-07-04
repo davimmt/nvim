@@ -35,14 +35,36 @@ lspconfig.gopls.setup {
 }
 
 -- Terrraform
-lspconfig.terraform_lsp.setup {
-  root_dir = require("lspconfig.util").root_pattern("*.tf*", ".terraform", ".git", ".tflint.hcl"),
+-- lspconfig.terraform_lsp.setup {
+--   root_dir = require("lspconfig.util").root_pattern("*.tf*", ".terraform", ".git", ".tflint.hcl"),
+-- }
+
+require("lspconfig").terraformls.setup {
+  on_attach = function(client)
+    if client.name == "terraformls" then
+      -- Disable LSP semantic highlighting, leave TS at it
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+  end,
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*.tf", "*.tfvars" },
   callback = function()
     vim.lsp.buf.format()
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.hcl",
+  callback = function()
+    local filepath = vim.fn.expand "%:p"
+    vim.fn.jobstart({ "terragrunt", "hcl", "fmt", filepath }, {
+      stdout_buffered = true,
+      on_exit = function()
+        vim.cmd "edit!"
+      end,
+    })
   end,
 })
 
