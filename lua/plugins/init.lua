@@ -146,6 +146,7 @@ return {
         "yaml-language-server",
         "prettier",
         "tflint",
+        "terraform-ls",
         "bash-language-server",
         "shellcheck",
         "helm-ls",
