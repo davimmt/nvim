@@ -1,222 +1,66 @@
-return {
-  {
-    "nvim-tree/nvim-web-devicons",
-    event = "VeryLazy",
-    opts = {
-      -- strict = true, -- Enforce strict matching for extensions
-      override_by_extension = {
-        ["toml"] = {
-          icon = "⚙️",
-          name = "toml",
-        },
-        ["astro"] = {
-          icon = "🚀",
-          color = "#EF8547",
-          name = "Astro",
-        },
-      },
-    },
-  },
-  {
-    "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = function()
-      return require "configs.tree"
-    end,
-  },
-  -- Search & Replace
-  { "nvim-pack/nvim-spectre", cmd = "Spectre" },
-  -- Identation UI
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      return require "configs.indent-blankline"
-    end,
-  },
-  {
-    "lewis6991/gitsigns.nvim",
-    opts = function()
-      return require "configs.gitsigns"
-    end,
-  },
-  -- Mappings to easily delete, change and add surroundings in pairs
-  { "tpope/vim-surround", event = "VeryLazy" },
-  { "towolf/vim-helm", ft = { "helm", "gotmpl" } }, -- TODO: fix helm/yaml file diff
-  { "kdheepak/lazygit.nvim", event = "VeryLazy", dependencies = { "nvim-lua/plenary.nvim" } },
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require("nvchad.configs.lspconfig").defaults()
-      require "configs.lspconfig"
-    end,
-  },
-  {
-    "nvimdev/dashboard-nvim",
-    event = "VimEnter",
-    cmd = "Dashboard",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      return require "configs.dashboard"
-    end,
-  },
-  -- Formatter
-  {
-    "stevearc/conform.nvim",
-    event = "BufWritePre",
-    opts = require "configs.conform",
-  },
-  -- Open last openned file and position
-  {
-    "Shatur/neovim-session-manager",
-    lazy = false,
-    config = function()
-      local config = require "session_manager.config"
-      require("session_manager").setup {
-        autoload_mode = config.AutoloadMode.Disabled, -- What to do when started without arguments [Disabled, CurrentDir, LastSession].
-      }
-    end,
-  },
-  -- Rapidly navigate in files
-  {
-    "folke/flash.nvim",
-    keys = {
-      {
-        "s",
-        mode = { "n" },
-        function()
-          require("flash").jump()
-        end,
-        desc = "Flash",
-      },
-      {
-        "S",
-        mode = { "n" },
-        function()
-          require("flash").treesitter()
-        end,
-        desc = "Flash Treesitter",
-      },
-      {
-        "r",
-        mode = "o",
-        function()
-          require("flash").remote()
-        end,
-        desc = "Remote Flash",
-      },
-      {
-        "R",
-        mode = { "o", "x" },
-        function()
-          require("flash").treesitter_search()
-        end,
-        desc = "Treesitter Search",
-      },
-      {
-        "<c-s>",
-        mode = { "c" },
-        function()
-          require("flash").toggle()
-        end,
-        desc = "Toggle Flash Search",
-      },
-    },
-  },
-  -- Select and work with multiple cursors
-  {
-    "mg979/vim-visual-multi",
-    branch = "master",
-    event = "VeryLazy",
-    init = function()
-      vim.g.VM_maps = {
-        ["Find Under"] = "<C-d>",
-        ["Find Subword Under"] = "<C-d>",
-        ["Visual All"] = "<C-a>",
-      }
-    end,
-  },
-  -- Install and manage LSP servers, formatters
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "lua-language-server",
-        "stylua",
-        "yaml-language-server",
-        "prettier",
-        "tflint",
-        "terraform-ls",
-        "bash-language-server",
-        "shellcheck",
-        "helm-ls",
-        "hclfmt",
-        "gopls",
-        "golines",
-        "gofumpt",
-        "goimports-reviser",
-      },
-    },
-  },
-  -- Highlighting and syntax
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "vim",
-        "lua",
-        "vimdoc",
-        "dockerfile",
-        "go",
-        "bash",
-        "terraform",
-        "yaml",
-        "json",
-      },
-    },
-  },
-  -- Mapping UI
-  {
-    "folke/which-key.nvim",
-    keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
-    cmd = "WhichKey",
-    event = "VeryLazy",
-    config = function()
-      dofile(vim.g.base46_cache .. "whichkey")
-      require "configs.which-key"
-    end,
-  },
-  {
-    "zbirenbaum/copilot.lua",
-    lazy = false,
-    event = "InsertEnter",
-    cmd = "Copilot",
-    build = ":Copilot auth",
-    config = function()
-      local copilot = require "copilot"
-      copilot.setup(copilot.opts)
-    end,
-  },
-  -- Completion engine
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      {
-        "zbirenbaum/copilot-cmp",
-        config = function()
-          require("copilot_cmp").setup()
-        end,
-      },
-    },
-    opts = {
-      sources = {
-        { name = "nvim_lsp", group_index = 2 },
-        { name = "copilot", group_index = 2 },
-        { name = "luasnip", group_index = 2 },
-        { name = "buffer", group_index = 2 },
-        { name = "nvim_lua", group_index = 2 },
-        { name = "path", group_index = 2 },
-      },
-    },
-  },
-}
+--[[
+Plugin Loading Order and Descriptions:
+
+Dependencies and core plugins:
+  001-devicons     - nvim-web-devicons - Icon support
+
+LSP and completion:
+  002-lspconfig    - LSP configuration
+  003-mason        - LSP server management
+  004-cmp          - Completion engine
+  005-copilot      - GitHub Copilot
+
+UI and interface:
+  006-dashboard    - Dashboard
+  007-tree         - File tree
+  008-which-key    - Key mapping hints
+  009-indent-blankline - Indentation guides
+  010-gitsigns     - Git signs
+
+Navigation and editing:
+  011-flash        - Fast navigation
+  012-visual-multi - Multiple cursors
+  013-surround     - Surround text objects
+  020-visimatch    - Match highlighting
+
+File management and search:
+  014-spectre      - Search and replace
+  015-session-manager - Session management
+
+Language support:
+  016-treesitter   - Syntax highlighting
+  017-conform      - Code formatting
+  018-helm         - Helm support
+
+Git and version control:
+  019-lazygit      - Git UI
+--]]
+
+-- Automatically load all plugin files in order
+local plugins = {}
+local files = {}
+local current_dir = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":h")
+
+for name, type in vim.fs.dir(current_dir) do
+  if type == "file" and name:match "^d{3}-.*.lua$" then
+    table.insert(files, name)
+  end
+end
+table.sort(files)
+
+for _, filename in ipairs(files) do
+  local module_name = filename:gsub("%.lua$", "")
+  local plugin_config = require("plugins." .. module_name)
+
+  if type(plugin_config) == "table" then
+    if plugin_config[1] then
+      for _, plugin in ipairs(plugin_config) do
+        table.insert(plugins, plugin)
+      end
+    else
+      table.insert(plugins, plugin_config)
+    end
+  end
+end
+
+return plugins
