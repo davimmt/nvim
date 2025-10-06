@@ -51,18 +51,6 @@ return {
         },
 
         glyphs = {
-          default = "󰈚",
-          symlink = "",
-          folder = {
-            default = "",
-            empty = "",
-            empty_open = "",
-            open = "",
-            symlink = "",
-            symlink_open = "",
-            arrow_open = "",
-            arrow_closed = "",
-          },
           git = {
             unstaged = "M",
             staged = "✓",
