@@ -1,30 +1,39 @@
 return {
   "neovim/nvim-lspconfig",
+
   config = function()
+    -- NvChad defaults (keep this)
     require("nvchad.configs.lspconfig").defaults()
 
     local on_attach = require("nvchad.configs.lspconfig").on_attach
     local on_init = require("nvchad.configs.lspconfig").on_init
     local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-    local lspconfig = require "lspconfig"
-    local servers = { "yamlls", "bashls" }
+    local util = require("lspconfig/util")
 
-    -- lsps with default config
-    for _, lsp in ipairs(servers) do
-      lspconfig[lsp].setup {
+    -- helper for compatibility with NvChad callbacks
+    local function setup(server, opts)
+      opts = vim.tbl_deep_extend("force", {
         on_attach = on_attach,
         on_init = on_init,
         capabilities = capabilities,
-      }
+      }, opts or {})
+
+      vim.lsp.config(server, opts)
+      vim.lsp.enable(server)
     end
 
-    local util = require "lspconfig/util"
+    -- =========================
+    -- BASIC SERVERS
+    -- =========================
+    for _, lsp in ipairs({ "yamlls", "bashls" }) do
+      setup(lsp)
+    end
 
-    -- Go
-    lspconfig.gopls.setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
+    -- =========================
+    -- GOPLS
+    -- =========================
+    setup("gopls", {
       cmd = { "gopls" },
       filetypes = { "go", "gomod", "gowork", "gotmpl" },
       root_dir = util.root_pattern("go.work", "go.mod", ".git"),
@@ -37,48 +46,52 @@ return {
           },
         },
       },
-    }
+    })
 
-    -- Terrraform
-    -- lspconfig.terraform_lsp.setup {
-    --   root_dir = require("lspconfig.util").root_pattern("*.tf*", ".terraform", ".git", ".tflint.hcl"),
-    -- }
-
-    require("lspconfig").terraformls.setup {
-      on_attach = function(client)
+    -- =========================
+    -- TERRAFORM LSP
+    -- =========================
+    setup("terraformls", {
+      on_attach = function(client, bufnr)
         if client.name == "terraformls" then
-          -- Disable LSP semantic highlighting, leave TS at it
           client.server_capabilities.semanticTokensProvider = nil
         end
       end,
-    }
+    })
 
-    vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    -- format terraform files
+    vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = { "*.tf", "*.tfvars" },
       callback = function()
         vim.lsp.buf.format()
       end,
     })
 
+    -- terraform fmt via terragrunt (unchanged logic)
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = "*.hcl",
       callback = function()
-        local filepath = vim.fn.expand "%:p"
+        local filepath = vim.fn.expand("%:p")
         vim.fn.jobstart({ "terragrunt", "hcl", "fmt", filepath }, {
           stdout_buffered = true,
           on_exit = function()
-            vim.cmd "edit!"
+            vim.cmd("edit!")
           end,
         })
       end,
     })
 
-    lspconfig.tflint.setup {
-      root_dir = require("lspconfig.util").root_pattern("*.tf*", ".terraform", ".git", ".tflint.hcl"),
-    }
+    -- =========================
+    -- TFLINT
+    -- =========================
+    setup("tflint", {
+      root_dir = util.root_pattern("*.tf*", ".terraform", ".git", ".tflint.hcl"),
+    })
 
-    -- Helm
-    lspconfig.helm_ls.setup {
+    -- =========================
+    -- HELM
+    -- =========================
+    setup("helm_ls", {
       settings = {
         ["helm-ls"] = {
           yamlls = {
@@ -86,6 +99,6 @@ return {
           },
         },
       },
-    }
+    })
   end,
 }

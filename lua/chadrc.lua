@@ -6,9 +6,9 @@
 local M = {}
 
 M.base46 = {
-  transparency = true,
-  theme = "onedark",
-  theme_toggle = { "onedark", "one_light" },
+  transparency = false,
+  theme = "material-deep-ocean",
+  theme_toggle = { "material-deep-ocean", "catppuccin-latte" },
 
   telescope = { style = "bordered" },
 

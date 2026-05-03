@@ -45,11 +45,11 @@ map("n", "<leader>N", "<cmd> enew <CR>", { desc = "New file buffer" })
 map("i", "<C-s>", "<Esc>:noa w<CR>a", { desc = "Save file in insert mode" })
 -- terminal
 map("t", "<ESC>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
-map("n", "<leader>th", function()
-  require("nvchad.term").new { pos = "sp" }
+map("n", "<A-T>", function()
+  require("nvchad.term").toggle { pos = "sp" }
 end, { desc = "Terminal new horizontal term" })
-map("n", "<leader>tv", function()
-  require("nvchad.term").new { pos = "vsp" }
+map("n", "<A-t>", function()
+  require("nvchad.term").toggle { pos = "vsp" }
 end, { desc = "Terminal new vertical term" })
 -- TODO(1): Try to change it to <C-w>
 map("n", "<C-q>", function()
@@ -82,12 +82,10 @@ end, { desc = "NvChad Themes" })
 map("n", "<leader>cv", ":lua require('base46').toggle_transparency()<CR>", { desc = "Toggle Background Transparency" })
 map("n", "<leader>cc", "<cmd> NvCheatsheet <CR>", { desc = "Mapping cheatsheet" })
 -- telescope
-map("n", "<leader>fm", "<cmd> Telescope marks <CR>", { desc = "Telescope Bookmarks" })
-map("n", "<leader>fm", "<cmd> Telescope marks <CR>", { desc = "Telescope Bookmarks" })
-map("n", "<leader>fa", "<cmd>Telescope marks<CR>", { desc = "Telescope find marks" })
-map("n", "<A-f>", "<cmd> Telescope find_files <CR>")
-map("n", "<A-w>", "<cmd> Telescope live_grep <CR>")
-map("n", "<A-g>", "<cmd> Telescope git_status <CR>")
+map("n", "<A-m>", "<cmd>Telescope marks<CR>", { desc = "Telescope by marks" })
+map("n", "<A-f>", "<cmd>Telescope find_files<CR>", { desc = "Telescope by files" })
+map("n", "<A-w>", "<cmd>Telescope live_grep<CR>", { desc = "Telescope by text" })
+map("n", "<A-g>", "<cmd>Telescope git_status<CR>", { desc = "Telescope by git status" })
 -- nvim
 map("n", "<leader>nn", "<cmd> set nu! rnu! <CR>", { desc = "Toggle line numbers" })
 map("n", "<leader>na", "<cmd> set nu rnu! <CR>", { desc = "Toggle absolute line numbers" })
@@ -108,9 +106,6 @@ map("n", "<A-Right>", function()
   require("nvchad.tabufline").move_buf(1)
 end, { desc = "Move file buffer right" })
 -- spectre
--- map("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
--- map("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Search current word" })
--- map("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search current word" })
 map("n", "<C-x>", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
 map("n", "<C-A-x>", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Search current word" })
 map("v", "<C-A-x>", '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search current word" })
