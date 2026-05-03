@@ -1,0 +1,27 @@
+return {
+  "chentoast/marks.nvim",
+  event = "VeryLazy",
+  opts = {},
+
+  "otavioschwanck/arrow.nvim",
+  dependencies = {
+    { "nvim-tree/nvim-web-devicons" },
+    -- or if using `mini.icons`
+    -- { "echasnovski/mini.icons" },
+  },
+  opts = {
+    show_icons = true,
+    leader_key = ';', -- Recommended to be a single key
+    buffer_leader_key = 'm', -- Per Buffer Mappings
+  },
+
+  "ThePrimeagen/harpoon",
+  branch = "harpoon2",
+  dependencies = { "nvim-lua/plenary.nvim" }
+
+  "leath-dub/snipe.nvim",
+  keys = {
+    {"gb", function () require("snipe").open_buffer_menu() end, desc = "Open Snipe buffer menu"}
+  },
+  opts = {}
+}

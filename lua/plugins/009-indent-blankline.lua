@@ -9,6 +9,7 @@ return {
           "help",
           "NvimTree",
           "Trouble",
+          "markdown",
         },
 
         buftypes = {
