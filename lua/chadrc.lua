@@ -7,8 +7,8 @@ local M = {}
 
 M.base46 = {
   transparency = false,
-  theme = "material-deep-ocean",
-  theme_toggle = { "material-deep-ocean", "catppuccin-latte" },
+  theme = "yoru",
+  theme_toggle = { "yoru", "catppuccin-latte" },
 
   telescope = { style = "bordered" },
 

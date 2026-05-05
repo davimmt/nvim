@@ -1,19 +1,19 @@
 return {
-  'MeanderingProgrammer/render-markdown.nvim',
+  "MeanderingProgrammer/render-markdown.nvim",
   ft = { "markdown" },
-  dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+  dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
   config = function()
-    require('render-markdown').setup({
+    require("render-markdown").setup {
       completions = { lsp = { enabled = true } },
       heading = {
         render_modes = true,
       },
       bullet = {
         render_modes = true,
-        icons = { '●', '○', '•', '◦' },
+        icons = { "●", "○", "•", "◦" },
       },
-    })
-  end
+    }
+  end,
 
   -- "delphinus/md-render.nvim",
   -- version = "*",

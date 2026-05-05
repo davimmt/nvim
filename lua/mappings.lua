@@ -44,7 +44,7 @@ map("n", "Q", ":qa!<CR>", { desc = "Quit" })
 map("n", "<leader>N", "<cmd> enew <CR>", { desc = "New file buffer" })
 map("i", "<C-s>", "<Esc>:noa w<CR>a", { desc = "Save file in insert mode" })
 -- terminal
-map("t", "<ESC>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
+map("t", "<S-ESC>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
 map("n", "<A-T>", function()
   require("nvchad.term").toggle { pos = "sp" }
 end, { desc = "Terminal new horizontal term" })

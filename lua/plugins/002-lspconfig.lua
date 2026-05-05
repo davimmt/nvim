@@ -9,7 +9,7 @@ return {
     local on_init = require("nvchad.configs.lspconfig").on_init
     local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-    local util = require("lspconfig/util")
+    local util = require "lspconfig/util"
 
     -- helper for compatibility with NvChad callbacks
     local function setup(server, opts)
@@ -26,7 +26,7 @@ return {
     -- =========================
     -- BASIC SERVERS
     -- =========================
-    for _, lsp in ipairs({ "yamlls", "bashls" }) do
+    for _, lsp in ipairs { "yamlls", "bashls" } do
       setup(lsp)
     end
 
@@ -71,11 +71,11 @@ return {
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = "*.hcl",
       callback = function()
-        local filepath = vim.fn.expand("%:p")
+        local filepath = vim.fn.expand "%:p"
         vim.fn.jobstart({ "terragrunt", "hcl", "fmt", filepath }, {
           stdout_buffered = true,
           on_exit = function()
-            vim.cmd("edit!")
+            vim.cmd "edit!"
           end,
         })
       end,
